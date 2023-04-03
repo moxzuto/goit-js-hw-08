@@ -21,9 +21,13 @@ window.addEventListener('DOMContentLoaded', () => {
 form.addEventListener('submit', event => {
   event.preventDefault();
   const feedbackFormState = JSON.parse(localStorage.getItem(key)) || {};
-  console.log({ email: feedbackFormState.email, message: feedbackFormState.message });
-  localStorage.removeItem(key);
-  emailInput.value = '';
-  messageInput.value = '';
+  if (feedbackFormState.email && feedbackFormState.message) {
+    console.log({ email: feedbackFormState.email, message: feedbackFormState.message });
+    localStorage.removeItem(key);
+    emailInput.value = '';
+    messageInput.value = '';
+  } else {
+    alert('Заполните оба поля!');
+  }
 });
 
